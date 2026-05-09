@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editor / tooling state
+.claude/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# original asset uploads (copied into public/ already)
+/IMG_*.JPG
+/IMG_*.jpg
+/IMG_*.PNG
+/IMG_*.png
