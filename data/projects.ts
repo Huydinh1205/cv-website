@@ -127,10 +127,10 @@ export const projects: Project[] = [
     repoVisibility: "private",
   },
   {
-    name: "Badminton Tactical Analysis with VLMs",
+    name: "Set-of-Mark Visual Prompting for Tactical Soccer Understanding",
     description:
-      "Research project (target: DICTA 2026). Hybrid CV + Vision-Language Model pipeline for tactical badminton analysis from single-camera video. Details under wraps pending paper submission.",
-    tech: ["PyTorch", "VLMs", "OpenCV", "RAG"],
+      "Research project (target: DICTA 2026). Training-free recipe that overlays detector marks (numbered player boxes, team colours, ball markers) onto soccer broadcast frames so a VLM can reason about possession, open space, passing lanes, and pressing. Includes a Tactical-QA benchmark and ablation against an oracle ceiling from SoccerNet GSR. Details under wraps pending paper submission.",
+    tech: ["PyTorch", "Gemini", "Qwen2.5-VL", "YOLO", "OpenCV"],
     links: {},
     status: "in-progress",
     repoVisibility: "private",
