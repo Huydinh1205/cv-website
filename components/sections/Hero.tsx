@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Download, Mail, Sparkles } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/Brands";
 import { profile } from "@/data/profile";
 
@@ -52,19 +53,29 @@ export function Hero() {
         <motion.div
           variants={fadeUp}
           transition={{ duration: 0.5 }}
+          className="mt-6 inline-flex max-w-2xl items-start gap-2 rounded-lg border border-accent/30 bg-accent/10 px-4 py-3 text-sm"
+        >
+          <Sparkles className="mt-0.5 size-4 shrink-0 text-accent" />
+          <span className="text-foreground/90">{profile.lookingFor}</span>
+        </motion.div>
+
+        <motion.div
+          variants={fadeUp}
+          transition={{ duration: 0.5 }}
           className="mt-8 flex flex-wrap items-center gap-3"
         >
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="inline-flex items-center rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground transition hover:opacity-90"
           >
             Get in touch
-          </a>
+          </Link>
           <a
-            href="#projects"
-            className="inline-flex items-center rounded-md border border-border bg-card px-5 py-2.5 text-sm font-medium transition hover:bg-muted"
+            href={profile.cvUrl}
+            download
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-5 py-2.5 text-sm font-medium transition hover:bg-muted"
           >
-            View projects
+            <Download className="size-4" /> Download CV
           </a>
           <div className="ml-2 flex gap-2">
             <SocialLink href={profile.socials.github} label="GitHub">

@@ -9,6 +9,9 @@ export const profile = {
   phone: "0410 525 293",
   email: "quochuy.dinh@student.uts.edu.au",
   avatar: "/images/avatar.jpg",
+  cvUrl: "/Quoc_Huy_Dinh_CV.pdf",
+  lookingFor:
+    "Open to internship, casual, part-time, contract, and graduate roles in ML/AI, Software Engineering, Data Engineering, or Data Analytics — Sydney (or remote AU).",
   socials: {
     github: "https://github.com/Huydinh1205",
     linkedin: "https://linkedin.com/in/quochuy-dinh",

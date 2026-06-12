@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Navbar } from "@/components/Navbar";
+import { ChatWidget } from "@/components/chatbot/ChatWidget";
 import { profile } from "@/data/profile";
 import "./globals.css";
 
@@ -33,7 +35,14 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
+            <p>
+              © {new Date().getFullYear()} {profile.name}. Built with Next.js, Tailwind, and a custom-trained transformer.
+            </p>
+          </footer>
+          <ChatWidget />
           <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
