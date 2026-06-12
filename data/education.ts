@@ -20,6 +20,6 @@ export const educations: Education[] = [
     field: "Computer Science",
     period: "Aug 2023 — Jun 2025",
     description:
-      "GPA 3.7 / 4.0. Data Structures & Algorithms (C++): A grade.",
+      "GPA 3.6 / 4.0. Data Structures & Algorithms (C++): A grade.",
   },
 ];
