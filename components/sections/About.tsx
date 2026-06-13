@@ -5,7 +5,7 @@ import { profile } from "@/data/profile";
 
 export function About() {
   return (
-    <section className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+    <section className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ export function About() {
         <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
           A bit about me
         </h2>
-        <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+        <p className="max-w-3xl text-justify text-lg leading-relaxed text-muted-foreground hyphens-auto">
           {profile.bio}
         </p>
         <dl className="mt-8 grid gap-4 sm:grid-cols-3">

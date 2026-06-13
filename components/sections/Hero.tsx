@@ -14,7 +14,7 @@ const fadeUp = {
 
 export function Hero() {
   return (
-    <section className="mx-auto flex w-full max-w-5xl flex-col-reverse items-center gap-10 px-4 pt-16 pb-12 sm:px-6 sm:pt-24 sm:pb-20 md:flex-row md:justify-between md:gap-12">
+    <section className="mx-auto flex w-full max-w-5xl flex-col-reverse items-center gap-8 px-4 pt-10 pb-8 sm:px-6 sm:pt-16 sm:pb-12 md:flex-row md:justify-between md:gap-12">
       <motion.div
         initial="hidden"
         animate="visible"

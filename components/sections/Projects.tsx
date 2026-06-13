@@ -13,6 +13,7 @@ import {
   Lock,
   Star,
 } from "lucide-react";
+import { Bubbles } from "@/components/Bubbles";
 import { GithubIcon } from "@/components/icons/Brands";
 import {
   categoryMeta,
@@ -129,8 +130,9 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.45, delay: index * 0.06 }}
       whileHover={{ y: -4 }}
-      className="group flex flex-col rounded-lg border border-border bg-card p-5 transition hover:border-accent/50 hover:shadow-lg"
+      className="group relative flex flex-col overflow-hidden rounded-lg border border-border bg-card p-5 transition hover:border-accent/50 hover:shadow-lg [&>*:not(.bubble-layer)]:relative [&>*:not(.bubble-layer)]:z-10"
     >
+      <Bubbles className="bubble-layer" />
       <div className="mb-3 flex items-start justify-between gap-3">
         <h4 className="text-lg font-semibold">{p.name}</h4>
         <div className="flex shrink-0 flex-wrap justify-end gap-1.5">
@@ -146,19 +148,24 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
           ) : null}
         </div>
       </div>
-      <p className="text-sm text-muted-foreground">{p.description}</p>
+      <p className="text-justify text-sm leading-relaxed text-muted-foreground hyphens-auto">
+        {p.description}
+      </p>
       {p.metrics?.length ? (
-        <ul className="mt-3 space-y-1">
+        <ul className="mt-3 space-y-1.5">
           {p.metrics.map((m) => (
-            <li key={m} className="flex gap-2 text-sm text-foreground/90">
-              <span className="mt-1.5 size-1 shrink-0 rounded-full bg-accent" />
-              <span>{m}</span>
+            <li
+              key={m}
+              className="flex gap-2 text-sm leading-relaxed text-foreground/90"
+            >
+              <span className="mt-2 size-1 shrink-0 rounded-full bg-accent" />
+              <span className="text-justify hyphens-auto">{m}</span>
             </li>
           ))}
         </ul>
       ) : null}
-      <div className="mt-4 flex-1" />
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex-1" />
+      <div className="mt-4 flex flex-wrap gap-1.5">
         {p.tech.map((t) => (
           <span
             key={t}

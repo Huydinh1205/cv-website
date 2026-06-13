@@ -26,12 +26,17 @@ export function Experience() {
               {exp.period}
               {exp.location ? ` · ${exp.location}` : ""}
             </p>
-            <p className="mt-3 text-sm text-muted-foreground">{exp.description}</p>
+            <p className="mt-3 text-justify text-sm leading-relaxed text-muted-foreground hyphens-auto">
+              {exp.description}
+            </p>
             <ul className="mt-3 space-y-1.5">
               {exp.highlights.map((h, hi) => (
-                <li key={hi} className="text-sm text-foreground/90">
-                  <span className="mr-2 text-accent">▹</span>
-                  {h}
+                <li
+                  key={hi}
+                  className="flex gap-2 text-sm leading-relaxed text-foreground/90"
+                >
+                  <span className="shrink-0 text-accent">▹</span>
+                  <span className="text-justify hyphens-auto">{h}</span>
                 </li>
               ))}
             </ul>

@@ -22,4 +22,12 @@ export const educations: Education[] = [
     description:
       "GPA 3.6 / 4.0. Data Structures & Algorithms (C++): A grade.",
   },
+  {
+    school: "Le Hong Phong High School for the Gifted",
+    degree: "Specialised High School",
+    field: "Physics Class",
+    period: "2020 — 2023",
+    description:
+      "Ho Chi Minh City. Top-ranked specialised school for STEM; physics-major stream covering advanced classical mechanics, electromagnetism, and quantum physics.",
+  },
 ];

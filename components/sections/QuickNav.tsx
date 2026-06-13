@@ -37,7 +37,7 @@ const items = [
 
 export function QuickNav() {
   return (
-    <section className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+    <section className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
