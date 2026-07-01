@@ -26,26 +26,20 @@ export const researchStatement =
 export const publications: Publication[] = [
   {
     title:
-      "Set-of-Mark Visual Prompting for Tactical Understanding in Soccer Broadcast",
+      "Hybrid CV + VLM for Tactical Badminton Analysis from Single-Camera Broadcast Video",
     venue: "DICTA 2026 (Sydney)",
     status: "in-preparation",
     year: "2026",
-    authors: "Quoc Huy Dinh, et al.",
+    authors: "Quoc Huy Dinh",
     abstract:
-      "A training-free recipe that overlays lightweight detector marks — numbered player boxes, team colours, and a ball marker — onto soccer broadcast frames so a VLM can reason about possession, open space, passing lanes, and pressing. We introduce a Tactical-QA benchmark (objective multiple-choice across 6 question types) and ablate the contribution of visual marks vs. text-only detection vs. an oracle ceiling derived from SoccerNet Game-State-Reconstruction ground truth.",
-    topics: ["VLM", "Visual Prompting", "Sports Analytics", "Training-Free"],
-    links: {},
-  },
-  {
-    title:
-      "Dynamic Graph Neural Networks for Real-Time Win Prediction in Esports",
-    venue: "Target: top-tier ML venue (AAAI / WWW Applied ML)",
-    status: "in-preparation",
-    year: "2026",
-    authors: "Quoc Huy Dinh, et al.",
-    abstract:
-      "We formalise Dota 2 match state at each minute as a dynamic heterogeneous graph (players as nodes; kill, teamfight, and same-team edges with temporal decay) and learn a Graph Attention Network + GRU model that outputs a win-probability curve over the full match. The graph formulation captures interaction patterns (teamfight clustering, kill chains) that scalar-feature baselines miss, and enables turning-point analysis. Details under wraps pending submission.",
-    topics: ["Graph Neural Networks", "Temporal Modelling", "Esports"],
+      "A hybrid pipeline that decomposes tactical badminton analysis into a geometric side (classical CV: YOLOv11 court keypoint homography, player + shuttle tracking, Y-reversal shot detection) and a semantic side (a Vision-Language Model handling shot type, handedness, and out-of-position state). Shot events flow into a conversational RAG interface built on FAISS and Gemini 2.5 Pro over a static rules-and-tactics knowledge base. The core contribution is a task-decomposition ablation (CV-only vs VLM-only vs Hybrid) evaluated against hand-annotated ground truth from professional BWF rallies.",
+    topics: [
+      "VLM",
+      "Sports Analytics",
+      "RAG",
+      "Task Decomposition",
+      "Object Detection",
+    ],
     links: {},
   },
   {
@@ -58,6 +52,35 @@ export const publications: Publication[] = [
     abstract:
       "An end-to-end ALPR pipeline combining YOLOv11-OBB rotated-box detection, PARSEQ transformer OCR, ByteTrack temporal majority voting, and Zero-DCE++ low-light enhancement, evaluated across CCPD2020 robustness subsets (base, blur, tilt, rain, night). We report a clean ablation isolating the contribution of each component and the cost of detector error vs. an oracle ceiling.",
     topics: ["ALPR", "Object Detection", "OCR", "Robustness"],
+    links: {},
+  },
+  {
+    title:
+      "Set-of-Mark Visual Prompting for Tactical Understanding in Soccer Broadcast (exploratory)",
+    venue: "Target: computer vision venue (exploratory)",
+    status: "in-preparation",
+    year: "2026",
+    authors: "Quoc Huy Dinh",
+    abstract:
+      "Early-stage exploratory work drafting a training-free recipe that overlays lightweight detector marks (numbered player boxes, team colours, a ball marker) onto soccer broadcast frames so a VLM can reason about possession, open space, passing lanes, and pressing. Not on the primary submission track yet — concept scoping only.",
+    topics: ["VLM", "Visual Prompting", "Sports Analytics", "Exploratory"],
+    links: {},
+  },
+  {
+    title:
+      "Dynamic Graph Neural Networks for Real-Time Win Prediction in Esports (exploratory)",
+    venue: "Target: applied ML venue (exploratory)",
+    status: "in-preparation",
+    year: "2026",
+    authors: "Quoc Huy Dinh",
+    abstract:
+      "Early-stage exploratory formulation of competitive-match state at each minute as a dynamic heterogeneous graph, learned with a Graph Attention Network + GRU model to output a per-minute win-probability curve. Not on the primary submission track yet — concept scoping only.",
+    topics: [
+      "Graph Neural Networks",
+      "Temporal Modelling",
+      "Esports",
+      "Exploratory",
+    ],
     links: {},
   },
 ];

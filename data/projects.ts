@@ -39,6 +39,8 @@ export type Project = {
   featured?: boolean;
   status?: "in-progress";
   repoVisibility?: "private" | "local";
+  /** Show on website, but omit from the exported CV markdown/PDF. */
+  hideFromCv?: boolean;
 };
 
 export const projects: Project[] = [
@@ -191,33 +193,59 @@ export const projects: Project[] = [
     repoVisibility: "private",
   },
   {
+    name: "Hybrid CV + VLM for Tactical Badminton Analysis",
+    categories: ["ai"],
+    description:
+      "Solo research project (target: DICTA 2026, deadline 1 Jul 2026). Hybrid pipeline that splits tasks between classical CV (court homography, player + shuttle tracking, Y-reversal shot detection) and a Vision-Language Model (shot type, handedness, out-of-position state) for tactical badminton analysis from single-camera broadcast video. Built on top of a RAG-powered conversational interface (Gemini 2.5 Pro + FAISS + Streamlit).",
+    tech: [
+      "PyTorch",
+      "Ultralytics YOLOv11",
+      "Qwen2.5-VL",
+      "Gemini",
+      "LangChain",
+      "FAISS",
+      "Streamlit",
+    ],
+    metrics: [
+      "Court keypoint mAP 0.95 · player mAP 0.99 · shuttle mAP 0.57",
+      "Shot trigger v2 (Y-reversal): F1=0.80 on 30s Ginting-Axelsen rally (30 ground-truth shots)",
+      "Task decomposition ablation — CV-only vs VLM-only vs Hybrid — as core contribution",
+    ],
+    links: {},
+    featured: true,
+    status: "in-progress",
+    repoVisibility: "private",
+  },
+  {
     name: "Dynamic Graph Learning for Esports Win Prediction",
     categories: ["ai"],
     description:
-      "Research project (target: top-tier ML venue). Real-time win-probability model that treats each minute of a competitive match as a dynamic graph. Details under wraps pending paper submission.",
+      "Preliminary research (early stage, exploratory). Real-time win-probability model that treats each minute of a competitive match as a dynamic graph. Not yet on the primary submission track.",
     tech: ["PyTorch", "PyTorch Geometric", "Python"],
     metrics: [
       "Dynamic heterogeneous graph: 10 player nodes + kill / teamfight edges with temporal decay",
       "GAT + GRU architecture · per-minute win-probability curve",
-      "Targeting AAAI / WWW Applied ML · in preparation",
+      "Very early stage · concept scoping only",
     ],
     links: {},
     status: "in-progress",
     repoVisibility: "private",
+    hideFromCv: true,
   },
   {
     name: "Set-of-Mark Visual Prompting for Tactical Soccer Understanding",
     categories: ["ai"],
     description:
-      "Research project (target: DICTA 2026). Training-free recipe that overlays detector marks (numbered player boxes, team colours, ball markers) onto soccer broadcast frames so a VLM can reason about possession, open space, passing lanes, and pressing. Includes a Tactical-QA benchmark and ablation against an oracle ceiling from SoccerNet GSR. Details under wraps pending paper submission.",
+      "Preliminary research (early stage, exploratory). Training-free recipe that overlays detector marks onto soccer broadcast frames so a VLM can reason about possession, open space, passing lanes, and pressing. Recipe drafted, benchmark not yet built.",
     tech: ["PyTorch", "Gemini", "Qwen2.5-VL", "YOLO", "OpenCV"],
     metrics: [
-      "Training-free — runs on a T4 GPU with off-the-shelf YOLO + VLM API",
-      "Tactical-QA benchmark across 6 question types · McNemar + Cohen's κ rigour",
-      "Targeting DICTA 2026 · in preparation",
+      "Training-free recipe — off-the-shelf YOLO + VLM API",
+      "Tactical-QA benchmark planned across 6 question types",
+      "Very early stage · concept scoping only",
     ],
     links: {},
     status: "in-progress",
     repoVisibility: "private",
+    hideFromCv: true,
   },
 ];
