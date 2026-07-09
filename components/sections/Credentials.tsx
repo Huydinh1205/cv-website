@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award as AwardIcon, BadgeCheck } from "lucide-react";
+import { Award as AwardIcon, BadgeCheck, ExternalLink } from "lucide-react";
 import { Bubbles } from "@/components/Bubbles";
 import { awards, certifications } from "@/data/credentials";
 import { Section } from "./Section";
@@ -35,6 +35,16 @@ export function Credentials() {
                       {c.description}
                     </p>
                   ) : null}
+                  {c.certificateUrl ? (
+                    <a
+                      href={c.certificateUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-accent transition hover:opacity-80"
+                    >
+                      <ExternalLink className="size-3.5" /> View certificate
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </motion.li>
@@ -67,6 +77,16 @@ export function Credentials() {
                     <p className="mt-2 text-justify text-sm leading-relaxed text-muted-foreground hyphens-auto">
                       {a.description}
                     </p>
+                  ) : null}
+                  {a.certificateUrl ? (
+                    <a
+                      href={a.certificateUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-accent transition hover:opacity-80"
+                    >
+                      <ExternalLink className="size-3.5" /> View certificate
+                    </a>
                   ) : null}
                 </div>
               </div>

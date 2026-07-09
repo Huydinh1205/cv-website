@@ -3,6 +3,7 @@ export type Certification = {
   issuer: string;
   year: string;
   description?: string;
+  certificateUrl?: string;
 };
 
 export type Award = {
@@ -11,9 +12,18 @@ export type Award = {
   year: string;
   level: string;
   description?: string;
+  certificateUrl?: string;
 };
 
 export const certifications: Certification[] = [
+  {
+    title: "WIL to Work Certificate of Completion",
+    issuer: "UTS Careers",
+    year: "2026",
+    description:
+      "Work Integrated Learning preparation programme covering Australian workplace culture, succeeding in WIL activities, and online work environments — signed by Eva Chan, Manager UTS Careers.",
+    certificateUrl: "/certificates/UTS-WIL-to-Work-2026.pdf",
+  },
   {
     title: "Full-Stack Web Development",
     issuer: "CoderSchool",
@@ -24,6 +34,15 @@ export const certifications: Certification[] = [
 ];
 
 export const awards: Award[] = [
+  {
+    title: "Dean's List 2026",
+    organisation: "UTS Faculty of Engineering & Information Technology",
+    year: "2026",
+    level: "Faculty level, university",
+    description:
+      "Included on the FEIT Dean's List for outstanding academic achievement — a faculty initiative recognising top-performing students across Engineering and Information Technology. Certified by Prof. Karen Whelan, Associate Dean (Teaching & Learning).",
+    certificateUrl: "/certificates/UTS-Deans-List-2026.pdf",
+  },
   {
     title: "Second Prize — Physics Olympiad",
     organisation: "Ho Chi Minh City Department of Education",
