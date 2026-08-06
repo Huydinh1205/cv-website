@@ -14,7 +14,7 @@ export const profile = {
     "Open to internship, casual, part-time, contract, and graduate roles in ML/AI, Software Engineering, Data Engineering, or Data Analytics — Sydney (or remote AU).",
   socials: {
     github: "https://github.com/Huydinh1205",
-    linkedin: "https://linkedin.com/in/quochuy-dinh",
+    linkedin: "https://www.linkedin.com/in/quoc-huy-dinh-773550387/",
     huggingface: "https://huggingface.co/Huydinh1205",
   },
 } as const;
