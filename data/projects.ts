@@ -248,4 +248,19 @@ export const projects: Project[] = [
     repoVisibility: "private",
     hideFromCv: true,
   },
+  {
+    name: "Vegetation Stress Early Warning",
+    categories: ["data", "ai"],
+    description:
+      "End-to-end geospatial pipeline processing a Sentinel-2 satellite scene over irrigated farmland (Griffith, NSW) to detect vegetation stress before it is visible to the eye. Computes NDVI and NDRE from multispectral bands, classifies vegetation health with a Random Forest, and ships the full pipeline as a reproducible notebook and a live Gradio web app on Hugging Face Spaces.",
+    tech: ["Python", "rasterio", "NumPy", "scikit-learn", "GDAL", "Gradio", "Matplotlib"],
+    metrics: [
+      "Random Forest test accuracy 0.996 on 72,000 held-out pixels (4-class: healthy / mild stress / severe stress / bare soil)",
+      "NDVI-healthy pixels with early NDRE stress signal: 15,522 pixels — 25% of NDVI-healthy area",
+      "NDVI / NDRE correlation r = 0.97 across the full scene; Red Edge band carries 21% of RF feature importance independently",
+    ],
+    links: {
+      demo: "https://huggingface.co/spaces/Huydinh1205/vegetation-stress-early-warning",
+    },
+  },
 ];

@@ -10,6 +10,20 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    company: "Nallawilli Bunjil",
+    role: "Data Engineer",
+    period: "Jun 2026 — Present",
+    location: "Brookvale, NSW",
+    description:
+      "Geospatial data processing role centred on environmental monitoring — transforming raw high-resolution drone imagery and multispectral data into analysis-ready outputs that support land management insight delivery.",
+    highlights: [
+      "Process and analyse high-resolution drone imagery and multispectral datasets (including vegetation indices such as NDVI and NDRE) to support land condition monitoring and environmental decision-making",
+      "Build and maintain end-to-end data processing pipelines that ingest raw drone and geographic data, apply radiometric corrections, and produce cleaned outputs for downstream analysis and modelling",
+      "Apply geospatial tooling (rasterio, NumPy, GeoPandas, GDAL) across large raster datasets to extract vegetation health indicators and spatial features at scale",
+    ],
+    tech: ["Python", "rasterio", "NumPy", "GeoPandas", "GDAL", "scikit-learn"],
+  },
+  {
     company: "University of Technology Sydney",
     role: "Research Assistant",
     period: "Nov 2025 — Present",
