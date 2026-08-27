@@ -46,7 +46,7 @@ export function About() {
               Currently
             </dt>
             <dd className="mt-1 text-sm font-medium">
-              Research Assistant @ UTS
+              Data Engineer @ Nallawilli Bunjil · Research Assistant @ UTS
             </dd>
           </div>
         </dl>
