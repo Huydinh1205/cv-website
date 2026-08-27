@@ -38,18 +38,4 @@ export const experiences: Experience[] = [
     ],
     tech: ["Python", "PyTorch", "Pandas", "NumPy", "FastAPI", "VLM", "GAN"],
   },
-  {
-    company: "Cambridge EduX Hackathon 2026",
-    role: "Full-Stack / AI Engineer (Team of 4)",
-    period: "2026",
-    description:
-      "Built CurricuLLM — a parent-teacher communication platform that uses LLMs to auto-generate personalised curriculum progress reports.",
-    highlights: [
-      "Built an AI pipeline that auto-generates personalised curriculum progress reports for parents from teacher input — removing manual report writing",
-      "Developed a parent-facing AI chat interface for natural-language queries on student progress, served via FastAPI",
-      "Implemented real-time multilingual translation to broaden accessibility for non-English-speaking families",
-      "Contributed full-stack across React (component architecture, UI state) and FastAPI/PostgreSQL (REST API design, schema)",
-    ],
-    tech: ["TypeScript", "React", "FastAPI", "PostgreSQL", "LLMs"],
-  },
 ];
