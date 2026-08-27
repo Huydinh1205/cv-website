@@ -12,7 +12,7 @@ export const experiences: Experience[] = [
   {
     company: "Nallawilli Bunjil",
     role: "Data Engineer",
-    period: "Jun 2026 — Present",
+    period: "Aug 2026 — Present",
     location: "Brookvale, NSW",
     description:
       "Geospatial data processing role centred on environmental monitoring — transforming raw high-resolution drone imagery and multispectral data into analysis-ready outputs that support land management insight delivery.",
