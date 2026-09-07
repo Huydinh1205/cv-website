@@ -263,4 +263,29 @@ export const projects: Project[] = [
       demo: "https://huggingface.co/spaces/Huydinh1205/vegetation-stress-early-warning",
     },
   },
+  {
+    name: "Agent Market — Agent-to-Agent Negotiation Marketplace",
+    categories: ["software", "ai"],
+    description:
+      "OpenAI WebMCP Challenge submission, team of 2. A multi-vendor marketplace where a buyer's and a seller's browser agents negotiate a multi-term deal (price, quantity, freebies, free shipping, coupons) through tools exposed on document.modelContext via WebMCP; every order still needs explicit human confirmation. Built the WebMCP tool layer, in-browser agent loop, and the Java/Spring Boot negotiation state machine + REST API; a teammate owned the database schema and Azure SQL setup.",
+    tech: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Java 21",
+      "Spring Boot 3.5",
+      "JPA",
+      "Azure SQL Database",
+    ],
+    metrics: [
+      "55 backend tests + 16 frontend tests passing (state machine, coupons, tokens, catalog)",
+      "9 WebMCP tools registered on document.modelContext, plus full buyer/seller negotiation tool sets",
+      "Catalog of 95k+ real products across 5 sellers",
+    ],
+    links: {
+      demo: "https://mcp-website-chi.vercel.app/",
+      github: "https://github.com/Huydinh1205/mcp_website",
+    },
+    featured: true,
+  },
 ];
