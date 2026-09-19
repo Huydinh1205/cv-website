@@ -1,31 +1,34 @@
+import Image from "next/image";
+
 type LogoProps = {
   className?: string;
   size?: "sm" | "md" | "lg";
-  initials?: string;
 };
 
 const sizeClasses: Record<NonNullable<LogoProps["size"]>, string> = {
-  sm: "size-6 text-[10px]",
-  md: "size-7 text-[11px]",
-  lg: "size-9 text-[13px]",
+  sm: "size-8",
+  md: "size-10",
+  lg: "size-12",
 };
 
-export function LogoMark({
-  className = "",
-  size = "md",
-  initials = "QH",
-}: LogoProps) {
+export function LogoMark({ className = "", size = "md" }: LogoProps) {
   return (
     <span
       role="img"
-      aria-label={`${initials} logo`}
-      className={`relative inline-flex shrink-0 items-center justify-center rounded-md bg-accent font-bold tracking-tight text-accent-foreground shadow-sm ${sizeClasses[size]} ${className}`}
+      aria-label="Huy logo"
+      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-md bg-accent shadow-sm ${sizeClasses[size]} ${className}`}
     >
       <span
         aria-hidden
         className="absolute inset-0 rounded-md bg-gradient-to-br from-white/10 to-transparent"
       />
-      <span className="relative">{initials}</span>
+      <Image
+        src="/mascots/huy-face.png"
+        alt=""
+        fill
+        sizes="48px"
+        className="relative object-contain"
+      />
     </span>
   );
 }

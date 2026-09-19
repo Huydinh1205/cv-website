@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
 import { ChatWidget } from "@/components/chatbot/ChatWidget";
+import { MascotWidget } from "@/components/MascotWidget";
 import { profile } from "@/data/profile";
 import "./globals.css";
 
@@ -43,6 +44,7 @@ export default function RootLayout({
             </p>
           </footer>
           <ChatWidget />
+          <MascotWidget />
           <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>

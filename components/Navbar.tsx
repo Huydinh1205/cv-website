@@ -43,7 +43,7 @@ export function Navbar() {
           aria-label={`${profile.name} — home`}
           className="group inline-flex items-center gap-2 transition hover:opacity-80"
         >
-          <LogoMark size="md" initials="QH" />
+          <LogoMark size="md" />
           <span className="hidden font-mono text-sm font-semibold sm:inline">
             {profile.nickname}
           </span>

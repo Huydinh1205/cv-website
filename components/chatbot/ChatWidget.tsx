@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { Bot, X } from "lucide-react";
+import { X } from "lucide-react";
 import { ChatWindow } from "./ChatWindow";
 
 export function ChatWidget() {
@@ -18,7 +19,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 320, damping: 28 }}
-            className="absolute right-0 bottom-16 w-[min(360px,calc(100vw-2rem))] origin-bottom-right"
+            className="absolute right-0 bottom-20 w-[min(360px,calc(100vw-2rem))] origin-bottom-right"
           >
             <ChatWindow onClose={() => setOpen(false)} />
           </motion.div>
@@ -31,9 +32,13 @@ export function ChatWidget() {
         onClick={() => setOpen((v) => !v)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="flex size-12 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lg shadow-accent/20 transition"
+        className="flex size-16 items-center justify-center overflow-hidden rounded-full bg-accent text-accent-foreground shadow-lg shadow-accent/20 transition"
       >
-        {open ? <X className="size-5" /> : <Bot className="size-5" />}
+        {open ? (
+          <X className="size-6" />
+        ) : (
+          <Image src="/mascots/huy-face.png" alt="" width={56} height={56} className="size-14 object-contain" />
+        )}
       </motion.button>
     </div>
   );
