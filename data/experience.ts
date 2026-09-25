@@ -26,7 +26,7 @@ export const experiences: Experience[] = [
   {
     company: "University of Technology Sydney",
     role: "Research Assistant",
-    period: "Nov 2025 — Present",
+    period: "Nov 2025 — Sep 2026",
     location: "Sydney, NSW",
     description:
       "Cross-area research role spanning data analysis, data preprocessing, and backend server modules for research projects. Currently exploring Vision-Language Models (VLM) and Generative Adversarial Networks (GAN).",
