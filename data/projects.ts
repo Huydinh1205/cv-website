@@ -95,12 +95,12 @@ export const projects: Project[] = [
       "FastAPI",
     ],
     metrics: [
-      "Live in production at cv-website-lemon.vercel.app",
+      "Live in production at dinhquochuy.vercel.app",
       "App Router with shared layout for navbar / footer / chatbot widget",
       "Chatbot served from HF Spaces Docker — proxied via Next.js API route",
     ],
     links: {
-      demo: "https://cv-website-lemon.vercel.app",
+      demo: "https://dinhquochuy.vercel.app",
       github: "https://github.com/Huydinh1205/cv-website",
     },
     featured: true,

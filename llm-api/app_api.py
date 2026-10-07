@@ -108,7 +108,7 @@ allowed_origins = [
     o.strip()
     for o in os.getenv(
         "ALLOWED_ORIGINS",
-        "http://localhost:3000,https://cv-website.vercel.app",
+        "http://localhost:3000,https://dinhquochuy.vercel.app",
     ).split(",")
     if o.strip()
 ]
