@@ -10,6 +10,18 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    company: "CSIRO",
+    role: "Computer Vision Research Intern",
+    period: "Nov 2026 – Feb 2027 (Incoming)",
+    location: "Pullenvale, QLD",
+    description:
+      "Vacation Studentship with CSIRO Mineral Resources at QCAT, focused on computer vision for industrial measurement.",
+    highlights: [
+      "Developing image quality metrics for industrial stereo metrology systems",
+    ],
+    tech: ["Computer Vision", "Stereo Vision", "Python"],
+  },
+  {
     company: "Nallawilli Bunjil",
     role: "Data Engineer",
     period: "Aug 2026 — Present",
