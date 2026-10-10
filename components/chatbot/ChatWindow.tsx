@@ -3,10 +3,27 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Send, X } from "lucide-react";
+import { mascotReact } from "@/lib/mascot";
 
 type Message = {
   role: "user" | "bot";
   content: string;
+  /** Answered from the site's data because the model was not ready. */
+  fromFacts?: boolean;
+};
+
+type ModelStatus = "checking" | "online" | "waking";
+
+const STATUS_INTERVAL_MS = 5000;
+const MAX_STATUS_CHECKS = 12;
+
+const statusMeta: Record<ModelStatus, { dot: string; text: string }> = {
+  checking: { dot: "bg-muted-foreground/50", text: "Checking the model..." },
+  online: { dot: "bg-emerald-500", text: "Custom transformer is online" },
+  waking: {
+    dot: "bg-amber-500 animate-pulse",
+    text: "Model is waking up. Quick answers meanwhile.",
+  },
 };
 
 const initialBotMessage: Message = {
@@ -19,11 +36,39 @@ export function ChatWindow({ onClose }: { onClose: () => void }) {
   const [messages, setMessages] = useState<Message[]>([initialBotMessage]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<ModelStatus>("checking");
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, loading]);
+
+  // Ask the server whether the model is awake; keep checking while it wakes.
+  useEffect(() => {
+    let cancelled = false;
+    let tries = 0;
+    let timer = 0;
+    async function check() {
+      let ready = false;
+      try {
+        const res = await fetch("/api/chat", { cache: "no-store" });
+        ready = ((await res.json()) as { ready?: boolean }).ready === true;
+      } catch {
+        ready = false;
+      }
+      if (cancelled) return;
+      setStatus(ready ? "online" : "waking");
+      tries += 1;
+      if (!ready && tries < MAX_STATUS_CHECKS) {
+        timer = window.setTimeout(check, STATUS_INTERVAL_MS);
+      }
+    }
+    check();
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, []);
 
   async function send() {
     const text = input.trim();
@@ -37,16 +82,32 @@ export function ChatWindow({ onClose }: { onClose: () => void }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
       });
-      const data = await res.json();
-      const reply = res.ok
-        ? data.reply ?? "(no reply)"
-        : data.error ?? "Error: chatbot is waking up. Please try again in a moment.";
-      setMessages((m) => [...m, { role: "bot", content: reply }]);
+      const data = (await res.json()) as {
+        reply?: string;
+        error?: string;
+        source?: "model" | "facts";
+      };
+      if (!res.ok) {
+        setMessages((m) => [
+          ...m,
+          { role: "bot", content: data.error ?? "Something went wrong. Please try again." },
+        ]);
+        mascotReact("dizzy", 1000);
+        return;
+      }
+      const fromFacts = data.source === "facts";
+      setMessages((m) => [
+        ...m,
+        { role: "bot", content: data.reply || "(no reply)", fromFacts },
+      ]);
+      setStatus(fromFacts ? "waking" : "online");
+      mascotReact(fromFacts ? "bashful" : "delighted", 1000);
     } catch {
       setMessages((m) => [
         ...m,
-        { role: "bot", content: "Network error. The model may be spinning up — try again in ~30s." },
+        { role: "bot", content: "Network error. Please check your connection and try again." },
       ]);
+      mascotReact("dizzy", 1000);
     } finally {
       setLoading(false);
     }
@@ -57,7 +118,13 @@ export function ChatWindow({ onClose }: { onClose: () => void }) {
       <div className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-3">
         <div>
           <h3 className="text-sm font-semibold">Ask me anything</h3>
-          <p className="text-[11px] text-muted-foreground">Powered by custom transformer</p>
+          <p
+            className="flex items-center gap-1.5 text-[11px] text-muted-foreground"
+            aria-live="polite"
+          >
+            <span className={`size-1.5 shrink-0 rounded-full ${statusMeta[status].dot}`} />
+            {statusMeta[status].text}
+          </p>
         </div>
         <button
           aria-label="Close"
@@ -78,13 +145,18 @@ export function ChatWindow({ onClose }: { onClose: () => void }) {
             className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
+              className={`max-w-[85%] rounded-lg px-3 py-2 text-sm break-words whitespace-pre-line ${
                 m.role === "user"
                   ? "bg-accent text-accent-foreground"
                   : "bg-muted text-foreground"
               }`}
             >
               {m.content}
+              {m.fromFacts ? (
+                <span className="mt-1.5 block border-t border-border/60 pt-1.5 text-[11px] text-muted-foreground">
+                  Quick answer from Huy&apos;s profile data. The transformer is still waking up.
+                </span>
+              ) : null}
             </div>
           </motion.div>
         ))}

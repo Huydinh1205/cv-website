@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { CardFx } from "@/components/CardFx";
 import {
   BrainCircuit,
   Code2,
@@ -13,7 +14,6 @@ import {
   Lock,
   Star,
 } from "lucide-react";
-import { Bubbles } from "@/components/Bubbles";
 import { GithubIcon } from "@/components/icons/Brands";
 import {
   categoryMeta,
@@ -21,6 +21,8 @@ import {
   type Project,
   type ProjectCategory,
 } from "@/data/projects";
+import { slugify } from "@/lib/utils";
+
 import { Section } from "./Section";
 
 type Filter = "all" | ProjectCategory;
@@ -111,7 +113,16 @@ export function Projects() {
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 {items.map((p, i) => (
-                  <ProjectCard key={`${cat}-${p.name}`} p={p} index={i} />
+                  <ProjectCard
+                    key={`${cat}-${p.name}`}
+                    p={p}
+                    index={i}
+                    // A project can sit in several categories; only its first
+                    // visible card carries the id, so `/projects#slug` is unique.
+                    anchor={
+                      cat === (filter === "all" ? p.categories[0] : filter)
+                    }
+                  />
                 ))}
               </div>
             </div>
@@ -122,17 +133,45 @@ export function Projects() {
   );
 }
 
-function ProjectCard({ p, index }: { p: Project; index: number }) {
+function ProjectCard({
+  p,
+  index,
+  anchor,
+}: {
+  p: Project;
+  index: number;
+  anchor: boolean;
+}) {
   return (
     <motion.article
+      id={anchor ? slugify(p.name) : undefined}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.45, delay: index * 0.06 }}
-      whileHover={{ y: -4 }}
-      className="group relative flex flex-col overflow-hidden rounded-lg border border-border bg-card p-5 transition hover:border-accent/50 hover:shadow-lg [&>*:not(.bubble-layer)]:relative [&>*:not(.bubble-layer)]:z-10"
+      whileHover={{
+        y: -8,
+        transition: { type: "spring", stiffness: 260, damping: 20 },
+      }}
+      whileTap={{ y: -3, transition: { duration: 0.12 } }}
+      tabIndex={-1}
+      className="group relative isolate flex scroll-mt-20 flex-col overflow-hidden rounded-lg border border-border bg-card p-5 transition card-lift hover:border-accent/50 [&>*:not(.overlay-layer)]:relative [&>*:not(.overlay-layer)]:z-10"
     >
-      <Bubbles className="bubble-layer" />
+      <CardFx className="overlay-layer" />
+      {/* Detector-style annotation: corner brackets and a label on hover. */}
+      <span
+        aria-hidden
+        className="overlay-layer pointer-events-none absolute inset-0 z-20 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      >
+        <span className="absolute top-1.5 left-1.5 size-3 border-t-2 border-l-2 border-accent" />
+        <span className="absolute top-1.5 right-1.5 size-3 border-t-2 border-r-2 border-accent" />
+        <span className="absolute bottom-1.5 left-1.5 size-3 border-b-2 border-l-2 border-accent" />
+        <span className="absolute right-1.5 bottom-1.5 size-3 border-r-2 border-b-2 border-accent" />
+        <span className="absolute top-1 left-5 rounded-sm bg-accent px-1.5 py-0.5 font-mono text-[10px] leading-none font-semibold text-accent-foreground">
+          {p.categories.join("+")}
+          {p.status ? " · in-progress" : p.featured ? " · featured" : ""}
+        </span>
+      </span>
       <div className="mb-3 flex items-start justify-between gap-3">
         <h4 className="text-lg font-semibold">{p.name}</h4>
         <div className="flex shrink-0 flex-wrap justify-end gap-1.5">
@@ -148,7 +187,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
           ) : null}
         </div>
       </div>
-      <p className="text-justify text-sm leading-relaxed text-muted-foreground hyphens-auto">
+      <p className="text-sm leading-relaxed text-muted-foreground">
         {p.description}
       </p>
       {p.metrics?.length ? (
@@ -159,7 +198,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
               className="flex gap-2 text-sm leading-relaxed text-foreground/90"
             >
               <span className="mt-2 size-1 shrink-0 rounded-full bg-accent" />
-              <span className="text-justify hyphens-auto">{m}</span>
+              <span>{m}</span>
             </li>
           ))}
         </ul>

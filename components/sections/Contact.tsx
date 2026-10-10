@@ -8,6 +8,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
 import { profile } from "@/data/profile";
+import { mascotReact } from "@/lib/mascot";
 import { Section } from "./Section";
 
 const schema = z.object({
@@ -37,9 +38,11 @@ export function Contact() {
       });
       if (!res.ok) throw new Error(await res.text());
       toast.success("Message sent! I'll get back to you soon 👋");
+      mascotReact("heart", 1800);
       reset();
     } catch (err) {
       toast.error("Failed to send. Please try again later.");
+      mascotReact("dizzy", 1200);
       console.error(err);
     } finally {
       setSubmitting(false);

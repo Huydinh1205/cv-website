@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
 import { ChatWidget } from "@/components/chatbot/ChatWidget";
+import { AwayTitle } from "@/components/AwayTitle";
+import { CommandPalette } from "@/components/CommandPalette";
+import { DepthMeter } from "@/components/DepthMeter";
+import { Terminal } from "@/components/Terminal";
 import { profile } from "@/data/profile";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,6 +24,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: `${profile.name} — ${profile.title}`,
   description: profile.tagline,
 };
@@ -43,8 +50,13 @@ export default function RootLayout({
             </p>
           </footer>
           <ChatWidget />
+          <CommandPalette />
+          <Terminal />
+          <DepthMeter />
+          <AwayTitle />
           <Toaster richColors position="top-right" />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

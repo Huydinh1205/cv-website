@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FileText, FlaskConical, FolderGit2, Mail } from "lucide-react";
+import { ArrowUpRight, FileText, FlaskConical, FolderGit2, Mail } from "lucide-react";
 
 const items = [
   {
@@ -10,28 +10,24 @@ const items = [
     label: "Resume",
     description: "Experience, education, and skills",
     icon: FileText,
-    gradient: "from-amber-400 to-orange-500",
   },
   {
     href: "/projects",
     label: "Projects",
     description: "Selected engineering and research work",
     icon: FolderGit2,
-    gradient: "from-rose-400 to-red-500",
   },
   {
     href: "/research",
     label: "Research",
     description: "Publications, preprints, and interests",
     icon: FlaskConical,
-    gradient: "from-violet-400 to-purple-500",
   },
   {
     href: "/contact",
     label: "Contact",
-    description: "Reach out — open to opportunities",
+    description: "Reach out, open to opportunities",
     icon: Mail,
-    gradient: "from-sky-400 to-cyan-500",
   },
 ];
 
@@ -53,7 +49,7 @@ export function QuickNav() {
         </h2>
       </motion.div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item, i) => {
           const Icon = item.icon;
           return (
@@ -66,17 +62,16 @@ export function QuickNav() {
             >
               <Link
                 href={item.href}
-                className="group flex flex-col items-center text-center"
+                className="group flex h-full flex-col rounded-lg border border-border bg-card p-5 transition hover:border-accent/50 hover:shadow-lg"
               >
-                <div
-                  className={`relative flex size-40 items-center justify-center rounded-full bg-gradient-to-br ${item.gradient} shadow-lg transition group-hover:scale-105 group-hover:shadow-xl sm:size-44`}
-                >
-                  <Icon className="size-12 text-white" strokeWidth={1.8} />
+                <div className="flex items-start justify-between">
+                  <div className="flex size-11 items-center justify-center rounded-md bg-accent/10 text-accent transition group-hover:bg-accent group-hover:text-accent-foreground">
+                    <Icon className="size-5" strokeWidth={1.8} />
+                  </div>
+                  <ArrowUpRight className="size-4 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold transition group-hover:text-accent">
-                  {item.label}
-                </h3>
-                <p className="mt-1 max-w-[14rem] text-sm text-muted-foreground">
+                <h3 className="mt-5 text-lg font-semibold">{item.label}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
                   {item.description}
                 </p>
               </Link>

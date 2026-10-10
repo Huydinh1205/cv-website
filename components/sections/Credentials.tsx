@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { CardFx } from "@/components/CardFx";
 import { Award as AwardIcon, BadgeCheck, ExternalLink } from "lucide-react";
-import { Bubbles } from "@/components/Bubbles";
 import { awards, certifications } from "@/data/credentials";
 import { Section } from "./Section";
 
@@ -18,9 +18,15 @@ export function Credentials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="group relative overflow-hidden rounded-lg border border-border bg-card p-4 transition hover:border-accent/50 hover:shadow-lg"
+              whileHover={{
+                y: -8,
+                transition: { type: "spring", stiffness: 260, damping: 20 },
+              }}
+              whileTap={{ y: -3, transition: { duration: 0.12 } }}
+              tabIndex={-1}
+              className="group relative isolate overflow-hidden rounded-lg border border-border bg-card p-4 transition card-lift hover:border-accent/50"
             >
-              <Bubbles className="bubble-layer" />
+              <CardFx />
               <div className="relative z-10 flex gap-3">
                 <BadgeCheck className="mt-0.5 size-5 shrink-0 text-accent" />
                 <div className="flex-1">
@@ -31,7 +37,7 @@ export function Credentials() {
                     {c.issuer} · {c.year}
                   </p>
                   {c.description ? (
-                    <p className="mt-2 text-justify text-sm leading-relaxed text-muted-foreground hyphens-auto">
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {c.description}
                     </p>
                   ) : null}
@@ -61,9 +67,15 @@ export function Credentials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="group relative overflow-hidden rounded-lg border border-border bg-card p-4 transition hover:border-accent/50 hover:shadow-lg"
+              whileHover={{
+                y: -8,
+                transition: { type: "spring", stiffness: 260, damping: 20 },
+              }}
+              whileTap={{ y: -3, transition: { duration: 0.12 } }}
+              tabIndex={-1}
+              className="group relative isolate overflow-hidden rounded-lg border border-border bg-card p-4 transition card-lift hover:border-accent/50"
             >
-              <Bubbles className="bubble-layer" />
+              <CardFx />
               <div className="relative z-10 flex gap-3">
                 <AwardIcon className="mt-0.5 size-5 shrink-0 text-accent" />
                 <div className="flex-1">
@@ -74,7 +86,7 @@ export function Credentials() {
                     {a.organisation} · {a.year} · {a.level}
                   </p>
                   {a.description ? (
-                    <p className="mt-2 text-justify text-sm leading-relaxed text-muted-foreground hyphens-auto">
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {a.description}
                     </p>
                   ) : null}

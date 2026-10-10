@@ -3,10 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Download, Menu, X } from "lucide-react";
+import { Download, Menu, Search, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LogoMark } from "./Logo";
 import { profile } from "@/data/profile";
+import { mascotReact } from "@/lib/mascot";
+import { openPalette } from "@/lib/ui-events";
+import { useIsMac } from "@/lib/use-is-mac";
 
 const navItems = [
   { href: "/resume", label: "Resume" },
@@ -17,12 +20,12 @@ const navItems = [
 
 export function Navbar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-
-  // Close the mobile menu whenever the route changes.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  // The mobile menu remembers the route it was opened on, so navigating to
+  // another page closes it without needing an effect.
+  const [openedOn, setOpenedOn] = useState<string | null>(null);
+  const open = openedOn === pathname;
+  const setOpen = (next: boolean) => setOpenedOn(next ? pathname : null);
+  const isMac = useIsMac();
 
   // Lock body scroll while the mobile menu is open.
   useEffect(() => {
@@ -69,9 +72,21 @@ export function Navbar() {
               );
             })}
           </ul>
+          <button
+            type="button"
+            onClick={openPalette}
+            aria-label="Search the site and run commands"
+            className="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-card px-2.5 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+          >
+            <Search className="size-4" />
+            <kbd className="hidden font-mono text-[11px] sm:inline">
+              {isMac ? "⌘K" : "Ctrl K"}
+            </kbd>
+          </button>
           <a
             href={profile.cvUrl}
             download
+            onClick={() => mascotReact("heart", 1200)}
             className="hidden items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-foreground transition hover:opacity-90 sm:inline-flex"
           >
             <Download className="size-3.5" /> CV
@@ -84,7 +99,7 @@ export function Navbar() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setOpen(!open)}
             className="inline-flex size-9 items-center justify-center rounded-md border border-border bg-card text-foreground transition hover:bg-muted sm:hidden"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
@@ -119,6 +134,7 @@ export function Navbar() {
             <a
               href={profile.cvUrl}
               download
+              onClick={() => mascotReact("heart", 1200)}
               className="flex items-center justify-center gap-2 rounded-md bg-accent px-3 py-2 text-base font-medium text-accent-foreground transition hover:opacity-90"
             >
               <Download className="size-4" /> Download CV

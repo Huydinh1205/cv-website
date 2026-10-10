@@ -26,7 +26,7 @@ export function Experience() {
               {exp.period}
               {exp.location ? ` · ${exp.location}` : ""}
             </p>
-            <p className="mt-3 text-justify text-sm leading-relaxed text-muted-foreground hyphens-auto">
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               {exp.description}
             </p>
             <ul className="mt-3 space-y-1.5">
@@ -36,7 +36,7 @@ export function Experience() {
                   className="flex gap-2 text-sm leading-relaxed text-foreground/90"
                 >
                   <span className="shrink-0 text-accent">▹</span>
-                  <span className="text-justify hyphens-auto">{h}</span>
+                  <span>{h}</span>
                 </li>
               ))}
             </ul>

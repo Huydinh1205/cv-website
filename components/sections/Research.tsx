@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { CardFx } from "@/components/CardFx";
 import { ExternalLink, FileText, Loader2 } from "lucide-react";
-import { Bubbles } from "@/components/Bubbles";
 import {
   academicProfiles,
   publications,
@@ -32,7 +32,7 @@ export function Research() {
   return (
     <>
       <Section id="research-statement" eyebrow="01" title="Research statement">
-        <p className="max-w-3xl text-justify text-base leading-relaxed text-muted-foreground hyphens-auto">
+        <p className="max-w-3xl text-base leading-relaxed text-muted-foreground">
           {researchStatement}
         </p>
         <h3 className="mt-8 mb-3 text-sm font-mono uppercase tracking-wider text-accent">
@@ -64,9 +64,15 @@ export function Research() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="group relative overflow-hidden rounded-lg border border-border bg-card p-5 transition hover:border-accent/50 hover:shadow-lg [&>*:not(.bubble-layer)]:relative [&>*:not(.bubble-layer)]:z-10"
+              whileHover={{
+                y: -8,
+                transition: { type: "spring", stiffness: 260, damping: 20 },
+              }}
+              whileTap={{ y: -3, transition: { duration: 0.12 } }}
+              tabIndex={-1}
+              className="group relative isolate overflow-hidden rounded-lg border border-border bg-card p-5 transition card-lift hover:border-accent/50"
             >
-              <Bubbles className="bubble-layer" />
+              <CardFx />
               <div className="mb-2 flex flex-wrap items-start justify-between gap-3">
                 <h3 className="text-lg font-semibold leading-snug">
                   {pub.title}
@@ -85,7 +91,7 @@ export function Research() {
                 {pub.venue} · {pub.year}
                 {pub.authors ? ` · ${pub.authors}` : ""}
               </p>
-              <p className="mt-3 text-justify text-sm leading-relaxed text-muted-foreground hyphens-auto">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {pub.abstract}
               </p>
               <div className="mt-3 flex flex-wrap gap-1.5">

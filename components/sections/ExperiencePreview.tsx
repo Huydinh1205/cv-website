@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { CardFx } from "@/components/CardFx";
 import { ArrowRight, Briefcase } from "lucide-react";
-import { Bubbles } from "@/components/Bubbles";
 import { experiences } from "@/data/experience";
 
 export function ExperiencePreview() {
@@ -21,7 +21,7 @@ export function ExperiencePreview() {
             experience
           </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Where I've worked
+            Where I&apos;ve worked
           </h2>
         </div>
         <Link
@@ -40,9 +40,15 @@ export function ExperiencePreview() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.45, delay: i * 0.08 }}
-            className="group relative overflow-hidden rounded-lg border border-border bg-card p-5 transition hover:border-accent/50 hover:shadow-lg"
+            whileHover={{
+              y: -8,
+              transition: { type: "spring", stiffness: 260, damping: 20 },
+            }}
+            whileTap={{ y: -3, transition: { duration: 0.12 } }}
+            tabIndex={-1}
+            className="group relative isolate overflow-hidden rounded-lg border border-border bg-card p-5 transition card-lift hover:border-accent/50"
           >
-            <Bubbles className="bubble-layer" />
+            <CardFx />
             <div className="relative z-10">
               <div className="mb-2 flex items-start gap-2">
                 <Briefcase className="mt-1 size-4 shrink-0 text-accent" />
@@ -59,7 +65,7 @@ export function ExperiencePreview() {
                 {exp.period}
                 {exp.location ? ` · ${exp.location}` : ""}
               </p>
-              <p className="mt-3 text-justify text-sm leading-relaxed text-muted-foreground hyphens-auto">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {exp.description}
               </p>
               {exp.tech?.length ? (
