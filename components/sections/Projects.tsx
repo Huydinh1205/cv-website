@@ -12,6 +12,7 @@ import {
   LayoutGrid,
   Loader2,
   Lock,
+  MonitorPlay,
   Play,
   Star,
 } from "lucide-react";
@@ -274,6 +275,17 @@ function ProjectCard({
             className="text-muted-foreground transition hover:text-accent"
           >
             <ExternalLink className="size-4" />
+          </a>
+        ) : null}
+        {p.links.video ? (
+          <a
+            href={p.links.video}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${p.name} demo video`}
+            className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground transition hover:text-accent"
+          >
+            <MonitorPlay className="size-4" /> Demo video
           </a>
         ) : null}
       </div>

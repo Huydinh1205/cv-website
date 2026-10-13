@@ -229,7 +229,8 @@ def agent_market():
 
 COVERS = {"cafepulse": cafepulse, "curricullm": curricullm, "e-commerce": ecommerce, "ml-from-scratch": ml_scratch,
           "frontend-projects": frontend, "game-telemetry": telemetry, "ocr-preprocessing": ocr,
-          "housing-price": housing, "dynawin-gnn": dynawin, "agent-market": agent_market}
+          "housing-price": housing, "dynawin-gnn": dynawin}
+# agent_market() is kept for reference; the card now uses a frame from the demo video.
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)

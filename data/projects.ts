@@ -38,6 +38,8 @@ export type Project = {
     demo?: string;
     github?: string | string[];
     paper?: string;
+    /** Recorded walkthrough, e.g. a YouTube link. */
+    video?: string;
   };
   featured?: boolean;
   status?: "in-progress";
@@ -312,9 +314,11 @@ export const projects: Project[] = [
       "9 WebMCP tools registered on document.modelContext, plus full buyer/seller negotiation tool sets",
       "Catalog of 95k+ real products across 5 sellers",
     ],
-    image: "/projects/agent-market.svg",
+    image: "/projects/agent-market.webp",
+    video: "/projects/agent-market.mp4",
     links: {
       demo: "https://mcp-website-chi.vercel.app/",
+      video: "https://youtu.be/Dmi2gS94qh4",
       github: "https://github.com/Huydinh1205/mcp_website",
     },
     featured: true,
