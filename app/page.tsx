@@ -6,7 +6,7 @@ import { profile } from "@/data/profile";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: `${profile.name} — ${profile.title}`,
+  title: `${profile.name} | ${profile.title}`,
   description: profile.tagline,
   path: "/",
 });

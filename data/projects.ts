@@ -30,7 +30,10 @@ export type Project = {
   description: string;
   tech: string[];
   metrics?: string[];
+  /** Thumbnail in /public/projects (webp screenshot or generated svg cover). */
   image?: string;
+  /** Short muted clip that plays on hover (.mp4, with a .webm twin next to it). */
+  video?: string;
   links: {
     demo?: string;
     github?: string | string[];
@@ -48,34 +51,43 @@ export const projects: Project[] = [
     name: "Transformer Chatbot from Scratch",
     categories: ["ai"],
     description:
-      "Decoder-only transformer built from scratch in PyTorch + Lightning — custom tokenizer, causal masking, temperature sampling. Powers the chatbot widget on this site (deployed on Hugging Face Spaces).",
+      "Decoder-only transformer built from scratch in PyTorch + Lightning: custom tokenizer, causal masking, temperature sampling. Powers the chatbot widget on this site (deployed on Hugging Face Spaces).",
     tech: ["PyTorch", "Lightning", "FastAPI", "Hugging Face Spaces"],
     metrics: [
       "4 decoder blocks · d_model=256 · 4 attention heads",
       "Word-level vocab trained on 40 intent classes",
-      "Live in production — served from HF Spaces Docker",
+      "Live in production, served from HF Spaces Docker",
     ],
+    image: "/projects/transformer-chatbot.webp",
     links: {
       github: "https://github.com/Huydinh1205/LSTM-chatbot",
     },
     featured: true,
   },
   {
-    name: "AI-Powered Coffee Shop Manager Dashboard",
+    name: "CaféPulse: AI Morning Brief for Café Owners",
     categories: ["software", "ai"],
     description:
-      "End-to-end AI briefing system delivering automated morning reports — revenue trends, inventory forecasting, scheduled daily reports. Single LangChain pipeline integrating four AI capabilities. Redis caching for repeated queries; containerised with Docker.",
-    tech: ["Python", "LangChain", "Redis", "Docker", "AWS"],
-    links: {},
+      "AI morning brief for Australian café owner-operators. Every day at 06:00 Sydney time a LangGraph ReAct agent (Groq Llama 3.3 70B) answers 10 manager questions per branch from the database: sales vs target, roster, low stock, equipment, overnight anomalies. Also has a z-score anomaly inbox, streaming Q&A over SSE and Prophet revenue forecasts, running on synthetic data for 8 Sydney branches.",
+    tech: ["FastAPI", "LangGraph", "Groq", "Prophet", "PostgreSQL", "Redis", "Next.js 15", "Docker"],
+    metrics: [
+      "10 morning questions × 8 demo branches, answered by a ReAct agent with KPI, trend and comparison tools",
+      "24-table PostgreSQL schema with Fair Work penalty rates and GST-inclusive AUD amounts",
+      "5 scheduled jobs pinned to Australia/Sydney: rollover, brief, anomaly scan, live data, nightly insights",
+    ],
+    image: "/projects/cafepulse.svg",
+    links: {
+      github: "https://github.com/Huydinh1205/cafepulse",
+    },
     featured: true,
-    repoVisibility: "private",
   },
   {
-    name: "CurricuLLM — Parent-Teacher AI Platform",
+    name: "CurricuLLM: Parent-Teacher AI Platform",
     categories: ["software", "ai"],
     description:
       "Cambridge EduX Hackathon 2026. AI pipeline that auto-generates personalised curriculum reports for parents. Parent-facing chat interface for natural-language student progress queries; real-time multilingual translation. Team project under the VAHPEM organisation.",
     tech: ["TypeScript", "React", "FastAPI", "PostgreSQL", "LLMs"],
+    image: "/projects/curricullm.svg",
     links: {
       github: "https://github.com/VAHPEM/AI_Parent-Teacher_Bridge",
     },
@@ -97,8 +109,9 @@ export const projects: Project[] = [
     metrics: [
       "Live in production at dinhquochuy.vercel.app",
       "App Router with shared layout for navbar / footer / chatbot widget",
-      "Chatbot served from HF Spaces Docker — proxied via Next.js API route",
+      "Chatbot served from HF Spaces Docker, proxied via a Next.js API route",
     ],
+    image: "/projects/portfolio.webp",
     links: {
       demo: "https://dinhquochuy.vercel.app",
       github: "https://github.com/Huydinh1205/cv-website",
@@ -109,8 +122,10 @@ export const projects: Project[] = [
     name: "Game Automation & Streaming Tool",
     categories: ["software"],
     description:
-      "Backend modules for a real-time game-automation tool. TCP layer for client-server messaging; OBS WebSocket integration to react to live stream events; REST API exposing keyboard/mouse triggers. Spans two repos — main app and the standalone TCP server/client.",
+      "Backend modules for a real-time game-automation tool. TCP layer for client-server messaging; OBS WebSocket integration to react to live stream events; REST API exposing keyboard/mouse triggers. Spans two repos: the main app and the standalone TCP server/client.",
     tech: ["Python", "Flask", "FastAPI", "TCP", "OBS WebSocket"],
+    image: "/projects/game-automation.webp",
+    video: "/projects/game-automation.mp4",
     links: {
       github: [
         "https://github.com/Huydinh1205/dota2",
@@ -122,8 +137,9 @@ export const projects: Project[] = [
     name: "E-Commerce Web Application",
     categories: ["software"],
     description:
-      "Full-stack solo project — product listing, search/filter, cart, checkout with order management. JWT auth (register/login/protected routes) with bcrypt; normalised PostgreSQL schema (3NF).",
+      "Full-stack solo project: product listing, search/filter, cart, checkout with order management. JWT auth (register/login/protected routes) with bcrypt; normalised PostgreSQL schema (3NF).",
     tech: ["React", "Express.js", "Node.js", "PostgreSQL", "JWT"],
+    image: "/projects/e-commerce.svg",
     links: {
       github: "https://github.com/Huydinh1205/Supermarket-main",
     },
@@ -132,8 +148,9 @@ export const projects: Project[] = [
     name: "ML Models from Scratch",
     categories: ["ai"],
     description:
-      "Implemented regression and classification algorithms from first principles — no scikit-learn shortcuts. Gradient descent, regularisation, bias-variance trade-off analysis.",
+      "Implemented regression and classification algorithms from first principles, with no scikit-learn shortcuts. Gradient descent, regularisation, bias-variance trade-off analysis.",
     tech: ["Python", "NumPy"],
+    image: "/projects/ml-from-scratch.svg",
     links: {},
     repoVisibility: "local",
   },
@@ -143,6 +160,7 @@ export const projects: Project[] = [
     description:
       "React Tic-Tac-Toe (with move history + undo, deployed on Netlify), React Music Player, React Weather App. Plus pure HTML/CSS/JS clones of Steam-style marketplace and job-search UIs.",
     tech: ["React", "JavaScript", "HTML", "CSS"],
+    image: "/projects/frontend-projects.svg",
     links: {
       github: "https://github.com/Huydinh1205/tic-tac-toe",
     },
@@ -151,8 +169,9 @@ export const projects: Project[] = [
     name: "Game Telemetry Data Analysis",
     categories: ["data"],
     description:
-      "Exploratory data analysis on competitive-game telemetry — cleaning, feature engineering, and statistical analysis of player behaviour and match outcomes. Visualised performance trends and outlier patterns to surface actionable insights.",
+      "Exploratory data analysis on competitive-game telemetry: cleaning, feature engineering, and statistical analysis of player behaviour and match outcomes. Visualised performance trends and outlier patterns to surface actionable insights.",
     tech: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
+    image: "/projects/game-telemetry.svg",
     links: {
       github: "https://github.com/Huydinh1205/analysis_dota2",
     },
@@ -161,8 +180,9 @@ export const projects: Project[] = [
     name: "OCR Preprocessing Pipeline",
     categories: ["data"],
     description:
-      "Image preprocessing pipeline for OCR — adaptive thresholding, denoising, deskewing, and contrast enhancement. Benchmarked downstream OCR accuracy across preprocessing configurations to identify the strongest pipeline for noisy real-world inputs.",
+      "Image preprocessing pipeline for OCR: adaptive thresholding, denoising, deskewing, and contrast enhancement. Benchmarked downstream OCR accuracy across preprocessing configurations to identify the strongest pipeline for noisy real-world inputs.",
     tech: ["Python", "OpenCV", "NumPy", "PaddleOCR"],
+    image: "/projects/ocr-preprocessing.svg",
     links: {
       github: "https://github.com/Huydinh1205/paddleOCR_comerdata",
     },
@@ -173,6 +193,7 @@ export const projects: Project[] = [
     description:
       "Coursework project for Intro to Data Analysis. EDA, missing-value handling, and statistical modelling on a housing dataset to identify the strongest predictors of price. Hypothesis testing, correlation analysis, and regression diagnostics.",
     tech: ["Python", "Pandas", "scikit-learn", "Matplotlib"],
+    image: "/projects/housing-price.svg",
     links: {},
     repoVisibility: "local",
   },
@@ -180,17 +201,20 @@ export const projects: Project[] = [
     name: "Smart Parking & Intelligent Traffic Management",
     categories: ["ai"],
     description:
-      "Full ALPR pipeline targeting international publication — YOLOv11-OBB plate detection, PARSEQ transformer OCR, ByteTrack temporal voting, and Zero-DCE++ low-light enhancement. Robustness benchmarked across CCPD2020 subsets (blur, tilt, night) with a Streamlit dashboard for real-time violation detection. Team lead (ML).",
-    tech: ["PyTorch", "Ultralytics YOLO", "PARSEQ", "ByteTrack", "Streamlit"],
+      "Full ALPR pipeline targeting international publication: YOLOv11 plate detection, PARSEQ transformer OCR fine-tuned on Latin and Chinese plates, ByteTrack temporal voting, and Zero-DCE++ low-light enhancement. Robustness benchmarked across CCPD subsets (blur, tilt, night). A Django parking-gate app turns each plate read into a check-in or check-out with a fee. Team lead (ML).",
+    tech: ["PyTorch", "Ultralytics YOLO", "PARSEQ", "ByteTrack", "Django"],
     metrics: [
-      "Team lead — 3 members, 5 ablation configs across detector + OCR axes",
+      "Team lead, 3 members, 5 ablation configs across detector + OCR axes",
       "Robustness benchmark on 6 CCPD2020 subsets (base, blur, tilt, rain, night, challenge)",
       "Targeting international vision venue · 2026",
     ],
-    links: {},
+    image: "/projects/smart-parking.webp",
+    video: "/projects/smart-parking.mp4",
+    links: {
+      github: "https://github.com/Huydinh1205/smart_parking",
+    },
     featured: true,
     status: "in-progress",
-    repoVisibility: "private",
   },
   {
     name: "Hybrid CV + VLM for Tactical Badminton Analysis",
@@ -209,8 +233,10 @@ export const projects: Project[] = [
     metrics: [
       "Court keypoint mAP 0.95 · player mAP 0.99 · shuttle mAP 0.57",
       "Shot trigger v2 (Y-reversal): F1=0.80 on 30s Ginting-Axelsen rally (30 ground-truth shots)",
-      "Task decomposition ablation — CV-only vs VLM-only vs Hybrid — as core contribution",
+      "Task decomposition ablation (CV-only vs VLM-only vs Hybrid) as the core contribution",
     ],
+    image: "/projects/rallyvlm.webp",
+    video: "/projects/rallyvlm.mp4",
     links: {},
     featured: true,
     status: "in-progress",
@@ -227,6 +253,7 @@ export const projects: Project[] = [
       "GAT + GRU architecture · per-minute win-probability curve",
       "Very early stage · concept scoping only",
     ],
+    image: "/projects/dynawin-gnn.svg",
     links: {},
     status: "in-progress",
     repoVisibility: "private",
@@ -239,10 +266,11 @@ export const projects: Project[] = [
       "Preliminary research (early stage, exploratory). Training-free recipe that overlays detector marks onto soccer broadcast frames so a VLM can reason about possession, open space, passing lanes, and pressing. Recipe drafted, benchmark not yet built.",
     tech: ["PyTorch", "Gemini", "Qwen2.5-VL", "YOLO", "OpenCV"],
     metrics: [
-      "Training-free recipe — off-the-shelf YOLO + VLM API",
+      "Training-free recipe: off-the-shelf YOLO + VLM API",
       "Tactical-QA benchmark planned across 6 question types",
       "Very early stage · concept scoping only",
     ],
+    image: "/projects/soccer-som.webp",
     links: {},
     status: "in-progress",
     repoVisibility: "private",
@@ -256,15 +284,17 @@ export const projects: Project[] = [
     tech: ["Python", "rasterio", "NumPy", "scikit-learn", "GDAL", "Gradio", "Matplotlib"],
     metrics: [
       "Random Forest test accuracy 0.996 on 72,000 held-out pixels (4-class: healthy / mild stress / severe stress / bare soil)",
-      "NDVI-healthy pixels with early NDRE stress signal: 15,522 pixels — 25% of NDVI-healthy area",
+      "NDVI-healthy pixels with early NDRE stress signal: 15,522 pixels, 25% of NDVI-healthy area",
       "NDVI / NDRE correlation r = 0.97 across the full scene; Red Edge band carries 21% of RF feature importance independently",
     ],
+    image: "/projects/vegetation-stress.webp",
+    video: "/projects/vegetation-stress.mp4",
     links: {
       demo: "https://huggingface.co/spaces/Huydinh1205/vegetation-stress-early-warning",
     },
   },
   {
-    name: "Agent Market — Agent-to-Agent Negotiation Marketplace",
+    name: "Agent Market: Agent-to-Agent Negotiation Marketplace",
     categories: ["software", "ai"],
     description:
       "OpenAI WebMCP Challenge submission, team of 2. A multi-vendor marketplace where a buyer's and a seller's browser agents negotiate a multi-term deal (price, quantity, freebies, free shipping, coupons) through tools exposed on document.modelContext via WebMCP; every order still needs explicit human confirmation. Built the WebMCP tool layer, in-browser agent loop, and the Java/Spring Boot negotiation state machine + REST API; a teammate owned the database schema and Azure SQL setup.",
@@ -282,6 +312,7 @@ export const projects: Project[] = [
       "9 WebMCP tools registered on document.modelContext, plus full buyer/seller negotiation tool sets",
       "Catalog of 95k+ real products across 5 sellers",
     ],
+    image: "/projects/agent-market.svg",
     links: {
       demo: "https://mcp-website-chi.vercel.app/",
       github: "https://github.com/Huydinh1205/mcp_website",

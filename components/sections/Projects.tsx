@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { CardFx } from "@/components/CardFx";
 import {
   BrainCircuit,
@@ -12,6 +12,7 @@ import {
   LayoutGrid,
   Loader2,
   Lock,
+  Play,
   Star,
 } from "lucide-react";
 import { GithubIcon } from "@/components/icons/Brands";
@@ -142,8 +143,29 @@ function ProjectCard({
   index: number;
   anchor: boolean;
 }) {
+  const ref = useRef<HTMLElement>(null);
+  const [hovered, setHovered] = useState(false);
+  const [inView, setInView] = useState(false);
+  const canHover = useCanHover();
+  const reduceMotion = useReducedMotion();
+
+  // Touch screens have no hover, so a clip plays while its card is mostly on screen.
+  useEffect(() => {
+    if (canHover || !p.video || !ref.current) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), {
+      threshold: 0.6,
+    });
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, [canHover, p.video]);
+
+  const playing = !reduceMotion && (canHover ? hovered : inView);
+
   return (
     <motion.article
+      ref={ref}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
       id={anchor ? slugify(p.name) : undefined}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -172,6 +194,9 @@ function ProjectCard({
           {p.status ? " · in-progress" : p.featured ? " · featured" : ""}
         </span>
       </span>
+      {p.image ? (
+        <ProjectMedia p={p} playing={playing} canHover={canHover} />
+      ) : null}
       <div className="mb-3 flex items-start justify-between gap-3">
         <h4 className="text-lg font-semibold">{p.name}</h4>
         <div className="flex shrink-0 flex-wrap justify-end gap-1.5">
@@ -223,7 +248,7 @@ function ProjectCard({
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${p.name} GitHub — ${url.split("/").pop()}`}
+                aria-label={`${p.name} GitHub: ${url.split("/").pop()}`}
                 title={url.split("/").pop()}
                 className="text-muted-foreground transition hover:text-accent"
               >
@@ -253,5 +278,97 @@ function ProjectCard({
         ) : null}
       </div>
     </motion.article>
+  );
+}
+
+/** True on devices with a real pointer that can hover (not touch screens). */
+const HOVER_QUERY = "(hover: hover)";
+
+function useCanHover() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia(HOVER_QUERY);
+      mq.addEventListener("change", onChange);
+      return () => mq.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia(HOVER_QUERY).matches,
+    () => true,
+  );
+}
+
+/**
+ * Thumbnail strip at the top of a card. Projects with a `video` swap the
+ * still for a short muted clip while the card is hovered (or on screen, on
+ * touch devices). The clip is not downloaded until it first plays.
+ */
+function ProjectMedia({
+  p,
+  playing,
+  canHover,
+}: {
+  p: Project;
+  playing: boolean;
+  canHover: boolean;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (playing) {
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  }, [playing]);
+
+  return (
+    <div className="relative -mx-5 -mt-5 mb-4 aspect-video overflow-hidden border-b border-border bg-muted">
+      {/* Plain <img>: covers are a mix of webp screenshots and svg drawings. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={p.image}
+        alt={`${p.name} preview`}
+        width={960}
+        height={540}
+        loading="lazy"
+        decoding="async"
+        className="size-full object-cover transition duration-500 group-hover:scale-[1.03]"
+      />
+      {p.video ? (
+        <>
+          <video
+            ref={videoRef}
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-hidden
+            onPlaying={() => setReady(true)}
+            className={`absolute inset-0 size-full object-cover transition-opacity duration-300 ${
+              playing && ready ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {/* VP9 first for Chrome/Firefox, H.264 for Safari. */}
+            <source src={p.video.replace(/\.mp4$/, ".webm")} type="video/webm" />
+            <source src={p.video} type="video/mp4" />
+          </video>
+          <span className="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded bg-black/60 px-1.5 py-0.5 font-mono text-[10px] text-white/90 backdrop-blur-sm">
+            {playing ? (
+              <>
+                <span className="size-1.5 animate-pulse rounded-full bg-red-500" />{" "}
+                live
+              </>
+            ) : (
+              <>
+                <Play className="size-2.5 fill-current" />{" "}
+                {canHover ? "hover to play" : "scroll to play"}
+              </>
+            )}
+          </span>
+        </>
+      ) : null}
+    </div>
   );
 }

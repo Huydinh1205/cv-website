@@ -27,7 +27,7 @@ export default async function Image() {
   );
   const faceSrc = `data:image/png;base64,${face.toString("base64")}`;
   // First clause of the tagline, so the card stays short enough to read.
-  const summary = profile.tagline.split(" — ")[0];
+  const summary = profile.tagline.split(". ")[0];
 
   return new ImageResponse(
     (

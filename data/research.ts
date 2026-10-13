@@ -21,7 +21,7 @@ export const researchInterests = [
 ];
 
 export const researchStatement =
-  "My research sits at the intersection of foundation models and structured perception — I'm interested in cheap, training-free recipes that turn generalist vision-language models into reliable specialists for spatial reasoning (sports tactics, traffic scenes, multi-agent games). I prefer rigour-through-experiment-design over rigour-through-gradient-descent, with careful ablations, oracle ceilings, and inter-annotator agreement as core tools.";
+  "My research sits at the intersection of foundation models and structured perception. I'm interested in cheap, training-free recipes that turn generalist vision-language models into reliable specialists for spatial reasoning (sports tactics, traffic scenes, multi-agent games). I prefer rigour-through-experiment-design over rigour-through-gradient-descent, with careful ablations, oracle ceilings, and inter-annotator agreement as core tools.";
 
 export const publications: Publication[] = [
   {
@@ -62,7 +62,7 @@ export const publications: Publication[] = [
     year: "2026",
     authors: "Quoc Huy Dinh",
     abstract:
-      "Early-stage exploratory work drafting a training-free recipe that overlays lightweight detector marks (numbered player boxes, team colours, a ball marker) onto soccer broadcast frames so a VLM can reason about possession, open space, passing lanes, and pressing. Not on the primary submission track yet — concept scoping only.",
+      "Early-stage exploratory work drafting a training-free recipe that overlays lightweight detector marks (numbered player boxes, team colours, a ball marker) onto soccer broadcast frames so a VLM can reason about possession, open space, passing lanes, and pressing. Not on the primary submission track yet, concept scoping only.",
     topics: ["VLM", "Visual Prompting", "Sports Analytics", "Exploratory"],
     links: {},
   },
@@ -74,7 +74,7 @@ export const publications: Publication[] = [
     year: "2026",
     authors: "Quoc Huy Dinh",
     abstract:
-      "Early-stage exploratory formulation of competitive-match state at each minute as a dynamic heterogeneous graph, learned with a Graph Attention Network + GRU model to output a per-minute win-probability curve. Not on the primary submission track yet — concept scoping only.",
+      "Early-stage exploratory formulation of competitive-match state at each minute as a dynamic heterogeneous graph, learned with a Graph Attention Network + GRU model to output a per-minute win-probability curve. Not on the primary submission track yet, concept scoping only.",
     topics: [
       "Graph Neural Networks",
       "Temporal Modelling",

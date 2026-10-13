@@ -24,10 +24,10 @@ export const experiences: Experience[] = [
   {
     company: "Nallawilli Bunjil",
     role: "Data Engineer",
-    period: "Aug 2026 — Present",
+    period: "Aug 2026 – Present",
     location: "Brookvale, NSW",
     description:
-      "Geospatial data processing role centred on environmental monitoring — transforming raw high-resolution drone imagery and multispectral data into analysis-ready outputs that support land management insight delivery.",
+      "Geospatial data processing role centred on environmental monitoring: transforming raw high-resolution drone imagery and multispectral data into analysis-ready outputs that support land management insight delivery.",
     highlights: [
       "Process and analyse high-resolution drone imagery and multispectral datasets (including vegetation indices such as NDVI and NDRE) to support land condition monitoring and environmental decision-making",
       "Build and maintain end-to-end data processing pipelines that ingest raw drone and geographic data, apply radiometric corrections, and produce cleaned outputs for downstream analysis and modelling",
@@ -38,7 +38,7 @@ export const experiences: Experience[] = [
   {
     company: "University of Technology Sydney",
     role: "Research Assistant",
-    period: "Nov 2025 — Sep 2026",
+    period: "Nov 2025 – Sep 2026",
     location: "Sydney, NSW",
     description:
       "Cross-area research role spanning data analysis, data preprocessing, and backend server modules for research projects. Currently exploring Vision-Language Models (VLM) and Generative Adversarial Networks (GAN).",
@@ -46,7 +46,7 @@ export const experiences: Experience[] = [
       "Data analysis: cleaned and analysed noisy multi-source OCR datasets, ran iterative model experiments, translated findings into reproducible workflows",
       "Data preprocessing: built normalisation, cleaning, and feature-extraction pipelines for downstream modelling across multi-source datasets",
       "Backend server modules: contributed TCP, OBS WebSocket, and REST API layers for a game-research project enabling real-time messaging and programmatic control",
-      "Currently researching Vision-Language Models and GANs — multimodal understanding and generative modelling experiments",
+      "Researched Vision-Language Models and GANs: multimodal understanding and generative modelling experiments",
     ],
     tech: ["Python", "PyTorch", "Pandas", "NumPy", "FastAPI", "VLM", "GAN"],
   },

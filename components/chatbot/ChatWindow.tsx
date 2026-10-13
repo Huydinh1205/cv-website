@@ -29,7 +29,7 @@ const statusMeta: Record<ModelStatus, { dot: string; text: string }> = {
 const initialBotMessage: Message = {
   role: "bot",
   content:
-    "Hi! I'm a chatbot running on a transformer LLM Huy built from scratch (small vocab, demo quality). Ask me about him — answers may be limited 😅",
+    "Hi! I'm a chatbot running on a transformer LLM Huy built from scratch (small vocab, demo quality). Ask me about him, but answers may be limited 😅",
 };
 
 export function ChatWindow({ onClose }: { onClose: () => void }) {

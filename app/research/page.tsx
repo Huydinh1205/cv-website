@@ -3,7 +3,7 @@ import { profile } from "@/data/profile";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: `Research — ${profile.name}`,
+  title: `Research | ${profile.name}`,
   description: `Publications, preprints, and research interests of ${profile.name}.`,
   path: "/research",
 });

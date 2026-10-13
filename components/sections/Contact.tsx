@@ -60,7 +60,7 @@ export function Contact() {
       >
         <div className="space-y-3">
           <p className="text-muted-foreground">
-            Have an interesting project, an ML question, or just want to say hi? Drop me a message — I usually reply within 24 hours.
+            Have an interesting project, an ML question, or just want to say hi? Drop me a message, I usually reply within 24 hours.
           </p>
           <p className="text-sm text-muted-foreground">
             Or email directly:{" "}

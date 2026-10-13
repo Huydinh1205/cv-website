@@ -250,7 +250,7 @@ export function ChatWidget() {
             directions="/mascots/huy-directions.webp"
             reactions="/mascots/huy-reactions.webp"
             size={110}
-            label={open ? "Huy — close chatbot" : "Huy — open chatbot"}
+            label={open ? "Huy: close chatbot" : "Huy: open chatbot"}
           />
         </div>
       </motion.div>

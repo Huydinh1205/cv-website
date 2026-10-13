@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: `${profile.name} — ${profile.title}`,
+  title: `${profile.name} | ${profile.title}`,
   description: profile.tagline,
 };
 

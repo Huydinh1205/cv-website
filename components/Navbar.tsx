@@ -43,7 +43,7 @@ export function Navbar() {
       <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          aria-label={`${profile.name} — home`}
+          aria-label={`${profile.name}: home`}
           className="group inline-flex items-center gap-2 transition hover:opacity-80"
         >
           <LogoMark size="md" />

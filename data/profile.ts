@@ -3,7 +3,7 @@ export const profile = {
   nickname: "Ryan",
   title: "AI / Software Engineer",
   tagline:
-    "AI & CS student at UTS Sydney building end-to-end ML systems — from transformers from scratch to full-stack AI products.",
+    "AI & CS student at UTS Sydney building end-to-end ML systems. From transformers written from scratch to full-stack AI products.",
   bio: "I'm an Artificial Intelligence and Computer Science student at the University of Technology Sydney with hands-on experience building AI-powered systems, Python automation pipelines, and full-stack web apps. I love turning research into shipped products.",
   location: "Sydney, NSW, Australia",
   phone: "0410 525 293",
@@ -11,7 +11,7 @@ export const profile = {
   avatar: "/images/avatar.jpg",
   cvUrl: "/Quoc_Huy_Dinh_CV.pdf",
   lookingFor:
-    "Open to internship, casual, part-time, contract, and graduate roles in ML/AI, Software Engineering, Data Engineering, or Data Analytics — Sydney (or remote AU).",
+    "Open to internship, casual, part-time, contract, and graduate roles in ML/AI, Software Engineering, Data Engineering, or Data Analytics in Sydney (or remote AU).",
   socials: {
     github: "https://github.com/Huydinh1205",
     linkedin: "https://www.linkedin.com/in/quoc-huy-dinh-773550387/",
