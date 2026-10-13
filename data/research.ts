@@ -27,10 +27,10 @@ export const publications: Publication[] = [
   {
     title:
       "Hybrid CV + VLM for Tactical Badminton Analysis from Single-Camera Broadcast Video",
-    venue: "DICTA 2026 (Sydney)",
+    venue: "First-author paper draft",
     status: "in-preparation",
     year: "2026",
-    authors: "Quoc Huy Dinh",
+    authors: "Quoc Huy Dinh (first author), team of 3",
     abstract:
       "A hybrid pipeline that decomposes tactical badminton analysis into a geometric side (classical CV: YOLOv11 court keypoint homography, player + shuttle tracking, Y-reversal shot detection) and a semantic side (a Vision-Language Model handling shot type, handedness, and out-of-position state). Shot events flow into a conversational RAG interface built on FAISS and Gemini 2.5 Pro over a static rules-and-tactics knowledge base. The core contribution is a task-decomposition ablation (CV-only vs VLM-only vs Hybrid) evaluated against hand-annotated ground truth from professional BWF rallies.",
     topics: [

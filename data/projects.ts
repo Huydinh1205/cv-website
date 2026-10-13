@@ -196,7 +196,7 @@ export const projects: Project[] = [
     name: "Hybrid CV + VLM for Tactical Badminton Analysis",
     categories: ["ai"],
     description:
-      "Solo research project (target: DICTA 2026, deadline 1 Jul 2026). Hybrid pipeline that splits tasks between classical CV (court homography, player + shuttle tracking, Y-reversal shot detection) and a Vision-Language Model (shot type, handedness, out-of-position state) for tactical badminton analysis from single-camera broadcast video. Built on top of a RAG-powered conversational interface (Gemini 2.5 Pro + FAISS + Streamlit).",
+      "First-author research project, team of 3. Hybrid pipeline that splits tasks between classical CV (court homography, player + shuttle tracking, Y-reversal shot detection) and a Vision-Language Model (shot type, handedness, out-of-position state) for tactical badminton analysis from single-camera broadcast video. Built on top of a RAG-powered conversational interface (Gemini 2.5 Pro + FAISS + Streamlit).",
     tech: [
       "PyTorch",
       "Ultralytics YOLOv11",
