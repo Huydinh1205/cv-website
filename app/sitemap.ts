@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/research", priority: 0.9 },
     { path: "/resume", priority: 0.8 },
     { path: "/contact", priority: 0.5 },
+    { path: "/ascii-cam", priority: 0.3 },
   ].map(({ path, priority }) => ({
     url: `${siteUrl}${path}`,
     lastModified,

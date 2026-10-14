@@ -41,11 +41,12 @@ const HELP = [
   "whoami            who you are, and who he is",
   "theme [dark|light] switch theme",
   "chat              open the chatbot",
+  "ascii-cam         turn yourself into ASCII (camera)",
   "mascot <reaction> make the mascot react",
   "clear, exit       tidy up, close",
 ];
 
-const ROUTES = ["/", "/projects", "/research", "/resume", "/contact"];
+const ROUTES = ["/", "/projects", "/research", "/resume", "/contact", "/ascii-cam"];
 
 const bullet = (items: string[]) => items.map((item) => `  - ${item}`);
 
@@ -169,6 +170,11 @@ export function runCommand(input: string, ctx: ShellContext): ShellResult {
     case "less":
     case "more":
       return { lines: cat(arg) };
+    case "ascii-cam":
+    case "asciicam":
+    case "camera":
+      ctx.navigate("/ascii-cam");
+      return { lines: ["-> /ascii-cam  (say cheese)"], close: true };
     case "pwd":
       return { lines: [ctx.pathname] };
     case "cd": {

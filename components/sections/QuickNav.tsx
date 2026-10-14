@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, FileText, FlaskConical, FolderGit2, Mail } from "lucide-react";
+import { ArrowUpRight, FileText, FlaskConical, FolderGit2, Mail, ScanFace } from "lucide-react";
 
 const items = [
   {
@@ -79,6 +79,43 @@ export function QuickNav() {
           );
         })}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.45, delay: 0.4 }}
+        className="mt-4"
+      >
+        <Link
+          href="/ascii-cam"
+          className="group flex flex-col gap-4 overflow-hidden rounded-lg border border-border bg-[#050a14] p-5 text-slate-200 transition hover:border-accent/60 hover:shadow-lg sm:flex-row sm:items-center"
+        >
+          <pre
+            aria-hidden
+            className="shrink-0 font-mono text-[9px] leading-[1.05] text-sky-300/80 transition group-hover:text-sky-300"
+          >{` .:;i1tf;.
+:1fLCG0GCf1:
+iLG08@@80GLi
+tC0@@@@@@0Ct
+:fG08@@80Gf:
+ .;1tLCLt1;.
+   :i1f1i:   `}</pre>
+          <div className="min-w-0 flex-1">
+            <p className="font-mono text-xs text-slate-400">
+              <span className="text-orange-400">ryan@huy</span>:~$ <span className="text-sky-400">ascii-cam --person</span>
+            </p>
+            <h3 className="mt-1 flex items-center gap-2 text-lg font-semibold text-slate-100">
+              <ScanFace className="size-5 text-sky-400" /> Lab: turn yourself into ASCII
+            </h3>
+            <p className="mt-1 text-sm text-slate-400">
+              Live webcam to coloured characters. A segmentation model keeps the room as video and
+              redraws only you. Runs entirely in your browser.
+            </p>
+          </div>
+          <ArrowUpRight className="size-5 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-sky-400" />
+        </Link>
+      </motion.div>
     </section>
   );
 }

@@ -17,6 +17,7 @@ import {
   House,
   Mail,
   MessageCircle,
+  ScanFace,
   Search,
   SunMoon,
   TerminalSquare,
@@ -172,6 +173,14 @@ export function CommandPalette() {
         keywords: "shell console console command line",
         icon: TerminalSquare,
         run: openTerminal,
+      },
+      {
+        id: "act-ascii-cam",
+        group: "Actions",
+        label: "Turn yourself into ASCII",
+        keywords: "ascii cam camera webcam lab playground mirror fun",
+        icon: ScanFace,
+        run: go("/ascii-cam"),
       },
       {
         id: "act-email",
