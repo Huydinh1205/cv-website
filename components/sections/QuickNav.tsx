@@ -85,8 +85,18 @@ export function QuickNav() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.45, delay: 0.4 }}
-        className="mt-4"
+        className="mt-12"
       >
+        <p className="mb-2 font-mono text-xs uppercase tracking-wider text-accent">
+          playground
+        </p>
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+          Something fun I built. Try it.
+        </h2>
+        <p className="mt-2 mb-5 max-w-2xl text-sm text-muted-foreground">
+          Not a project page, just a toy: point your camera at yourself and watch a computer
+          vision model turn you into ASCII.
+        </p>
         <Link
           href="/ascii-cam"
           className="group flex flex-col gap-4 overflow-hidden rounded-lg border border-border bg-[#050a14] p-5 text-slate-200 transition hover:border-accent/60 hover:shadow-lg sm:flex-row sm:items-center"
