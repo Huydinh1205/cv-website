@@ -22,18 +22,30 @@ export const experiences: Experience[] = [
     tech: ["Computer Vision", "Stereo Vision", "Python"],
   },
   {
+    company: "University of Technology Sydney",
+    role: "Research Data Analytics Intern",
+    period: "Oct 2026 – Present",
+    location: "Sydney, NSW",
+    description:
+      "Research Office and Data Analytics and Insights Unit (DAIU). Intern on the Research KPI project for the DVCR office, building automated reporting of research performance indicators.",
+    highlights: [
+      "Building automated data pipelines for UTS research KPIs in the Quality and Integrity stream (FWCI, CNCI, top-journal share, grant success, open access, retractions), drawing on SciVal, Scopus, Crossref and ARC/NHMRC data",
+    ],
+    tech: ["SciVal", "Scopus", "Crossref", "Data Pipelines", "Research Analytics"],
+  },
+  {
     company: "Nallawilli Bunjil",
     role: "Data Engineer",
     period: "Aug 2026 – Present",
     location: "Brookvale, NSW",
     description:
-      "Geospatial data processing role centred on environmental monitoring: transforming raw high-resolution drone imagery and multispectral data into analysis-ready outputs that support land management insight delivery.",
+      "Geospatial data and ML engineering for environmental monitoring from drone surveys.",
     highlights: [
-      "Process and analyse high-resolution drone imagery and multispectral datasets (including vegetation indices such as NDVI and NDRE) to support land condition monitoring and environmental decision-making",
-      "Build and maintain end-to-end data processing pipelines that ingest raw drone and geographic data, apply radiometric corrections, and produce cleaned outputs for downstream analysis and modelling",
-      "Apply geospatial tooling (rasterio, NumPy, GeoPandas, GDAL) across large raster datasets to extract vegetation health indicators and spatial features at scale",
+      "Built a semi-automatic vegetation labelling and segmentation pipeline for drone orthomosaics (DINOv2, SAM, DeepLabV3+, QGIS)",
+      "Built a web GUI so analysts can run the GPU vegetation classification workflow without the terminal",
+      "Tested py3dtiles for publishing drone LiDAR to CesiumJS: 18.8 million points converted in 31 s, every attribute checked after conversion",
     ],
-    tech: ["Python", "rasterio", "NumPy", "GeoPandas", "GDAL", "scikit-learn"],
+    tech: ["Python", "PyTorch", "QGIS", "rasterio", "GeoPandas", "NiceGUI", "py3dtiles", "CesiumJS"],
   },
   {
     company: "University of Technology Sydney",
