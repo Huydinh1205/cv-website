@@ -23,11 +23,11 @@ export const experiences: Experience[] = [
   },
   {
     company: "University of Technology Sydney",
-    role: "Research Data Analytics Intern",
+    role: "Research Office + DAIU Research Data Analytics Intern",
     period: "Oct 2026 – Present",
     location: "Sydney, NSW",
     description:
-      "Research Office and Data Analytics and Insights Unit (DAIU). Intern on the Research KPI project for the DVCR office, building automated reporting of research performance indicators.",
+      "Intern with the UTS Research Office and the Data Analytics and Insights Unit (DAIU) on the Research KPI project for the DVCR office, building automated reporting of research performance indicators.",
     highlights: [
       "Building automated data pipelines for UTS research KPIs in the Quality and Integrity stream (FWCI, CNCI, top-journal share, grant success, open access, retractions), drawing on SciVal, Scopus, Crossref and ARC/NHMRC data",
     ],
@@ -39,11 +39,12 @@ export const experiences: Experience[] = [
     period: "Aug 2026 – Present",
     location: "Brookvale, NSW",
     description:
-      "Geospatial data and ML engineering for environmental monitoring from drone surveys.",
+      "Geospatial data and ML engineering for environmental monitoring from drone surveys. I build the tools that turn raw drone orthomosaics and LiDAR into usable outputs: ML vegetation segmentation, a browser interface for running GPU classification jobs, and web publishing for large point clouds. I am also looking at how to automate the manual survey processing chain (photo editing, photogrammetry, LiDAR, PPK positioning and hyperspectral processing).",
     highlights: [
-      "Built a semi-automatic vegetation labelling and segmentation pipeline for drone orthomosaics (DINOv2, SAM, DeepLabV3+, QGIS)",
-      "Built a web GUI so analysts can run the GPU vegetation classification workflow without the terminal",
-      "Tested py3dtiles for publishing drone LiDAR to CesiumJS: 18.8 million points converted in 31 s, every attribute checked after conversion",
+      "Vegetation mapping: built a semi-automatic labelling and segmentation pipeline for drone orthomosaics (PyTorch, DINOv2, SAM, DeepLabV3+, QGIS)",
+      "Analyst tooling: built a web GUI prototype (NiceGUI, SQLite job queue) so analysts can run the GPU vegetation classification workflow without the terminal",
+      "LiDAR publishing: tested py3dtiles for serving drone LiDAR in CesiumJS, converting an 18.8 million point survey in 31 s and verifying with laspy that every point attribute survived the conversion",
+      "Pipeline automation: mapping the current manual workflow (Lightroom, Agisoft Metashape, DJI Terra, AUSPOS, GRYFN) to find the steps that can be scripted end to end",
     ],
     tech: ["Python", "PyTorch", "QGIS", "rasterio", "GeoPandas", "NiceGUI", "py3dtiles", "CesiumJS"],
   },
